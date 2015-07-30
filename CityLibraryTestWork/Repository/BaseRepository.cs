@@ -69,7 +69,7 @@ namespace CityLibraryTestWork.Repository
             IEnumerable<T> list;
             using (var context = new LibraryDbContext())
             {
-                list = context.Set<T>();
+                list = context.Set<T>().ToList();
             }
             return list;
 //            return _context.Set<T>();
