@@ -1,0 +1,71 @@
+﻿@model CityLibraryTestWork.Models.Autor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Autor</h4>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.AutorId })
+    </p>
+    <hr/>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SecondName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SecondName)
+        </dd>
+
+    </dl>
+    
+    <h4>Books</h4>
+    <table class="table">
+        <tr>
+            <th>
+                Titel
+            </th>
+            <th>
+                Serie
+            </th>
+            <th>
+                Publisher
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model.Books)
+        {
+            <tr>
+                <td>
+                    @item.Title
+                </td>
+                <td>
+                    @item.Serie.SerieName
+                </td>
+                <td>
+                    @item.Publisher.PublisherName
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Book", new { id = item.BookId }) |
+                    @Html.ActionLink("Delete", "Delete", "Book", new { id = item.BookId })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

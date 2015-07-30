@@ -1,0 +1,44 @@
+﻿@model CityLibraryTestWork.Models.Book
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Book</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            Serie
+        </dt>
+        <dd>
+            @Model.Serie.Title
+        </dd>
+        <dt>
+            Autor
+        </dt>
+        <dd>
+            @(Model.Autor.FirstName + " " + Model.Autor.SecondName)
+        </dd>
+        <dt>
+            Publisher
+        </dt>
+        <dd>
+            @Model.Publisher.Name
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BookId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

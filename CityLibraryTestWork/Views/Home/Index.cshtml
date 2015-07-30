@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>City Library</h1>
+    <p class="lead">Hear you can manage library database</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Manage Autors ifromation</h2>
+        <p>
+            Go to list of autors.
+        </p>
+        <p>@Html.ActionLink("Autors", "Index", "Autor", null, new { @class = "btn btn-default" })</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Manage Books ifromation</h2>
+        <p>Go to list of books.</p>
+        <p>@Html.ActionLink("Books", "Index", "Book", null, new { @class = "btn btn-default" })</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Manage Series ifromation</h2>
+        <p>Go to series list.</p>
+        <p>@Html.ActionLink("Series", "Index", "Serie", null, new {@class = "btn btn-default"})</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Manage Publishers information</h2>
+        <p>Go to Publisher list.</p>
+        <p>@Html.ActionLink("Publishers", "Index", "Publisher", null, new { @class = "btn btn-default" })</p>
+    </div>
+</div>
