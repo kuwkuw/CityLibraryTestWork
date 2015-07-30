@@ -8,7 +8,7 @@ namespace CityLibraryTestWork.Repository
 {
     public class PublisherRepository : BaseRepository<Publisher>
     {
-        public PublisherRepository(LibraryDbContext context) : base(context)
+        public PublisherRepository(LibraryDbContext context) : base(/*context*/)
         {
         }
     }

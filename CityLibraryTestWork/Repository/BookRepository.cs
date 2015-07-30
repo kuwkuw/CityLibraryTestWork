@@ -8,8 +8,8 @@ namespace CityLibraryTestWork.Repository
 {
     public class BookRepository: BaseRepository<Book>
     {
-        public BookRepository(LibraryDbContext context)
-            : base(context)
+        public BookRepository()
+            : base()
         {
 
         }

@@ -7,7 +7,7 @@ namespace CityLibraryTestWork.Repository
 {
     public class AutorRepository :BaseRepository<Autor>
     {
-        public AutorRepository(LibraryDbContext context) : base(context)
+        public AutorRepository() : base(/*context*/)
         {
         }
     }

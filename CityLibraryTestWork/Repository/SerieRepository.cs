@@ -8,7 +8,7 @@ namespace CityLibraryTestWork.Repository
 {
     public class SerieRepository: BaseRepository<Serie>
     {
-        public SerieRepository(LibraryDbContext context) : base(context)
+        public SerieRepository(LibraryDbContext context) : base()
         {
         }
     }

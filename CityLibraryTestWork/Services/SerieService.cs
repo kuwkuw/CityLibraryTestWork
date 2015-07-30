@@ -10,9 +10,9 @@ namespace CityLibraryTestWork.Services
     {
         private IRepository<Serie> _repository;
 
-        public SerieService(LibraryDbContext context)
+        public SerieService()
         {
-            _repository = new BaseRepository<Serie>(context);
+            _repository = new BaseRepository<Serie>();
         }
 
         public void AddSerie(Serie newItem)

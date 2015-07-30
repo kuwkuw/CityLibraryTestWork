@@ -6,8 +6,8 @@ namespace CityLibraryTestWork.Controllers
 {
     public class SerieController : Controller
     {
-        static LibraryDbContext _context = new LibraryDbContext();
-        SerieService _serieService = new SerieService(_context); 
+
+        SerieService _serieService = new SerieService(); 
         // GET: Serie
         public ActionResult Index()
         {
@@ -81,12 +81,6 @@ namespace CityLibraryTestWork.Controllers
             {
                 return View();
             }
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-//            _context.Dispose();
-            base.Dispose(disposing);
         }
     }
 }

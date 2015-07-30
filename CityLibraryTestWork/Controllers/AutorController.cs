@@ -8,21 +8,15 @@ namespace CityLibraryTestWork.Controllers
     public class AutorController : Controller
     {
         static LibraryDbContext _context = new LibraryDbContext();
-        AutorService _autorService = new AutorService(_context);
+        AutorService _autorService = new AutorService();
         // GET: Autor
         public ActionResult Index(string searchTerm = null)
         {
-            //if (searchTerm == null)
-            //{
-            //    return View(_autorService.GetAutors());
-            //}
-            //else
-            //{
-                return
-                    View(
-                        _autorService.GetAutors(
-                            item => searchTerm == null || (item.FirstName.StartsWith(searchTerm) || item.SecondName.StartsWith(searchTerm))));
-            //}
+            return
+                View(
+                    _autorService.GetAutors(
+                        item => searchTerm == null || (item.FirstName.StartsWith(searchTerm) || item.SecondName.StartsWith(searchTerm))));
+
 
         }
 
@@ -96,6 +90,12 @@ namespace CityLibraryTestWork.Controllers
             {
                 return View();
             }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

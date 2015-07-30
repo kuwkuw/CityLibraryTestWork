@@ -12,14 +12,17 @@ namespace CityLibraryTestWork.Controllers
 {
     public class BookController : Controller
     {
-        static LibraryDbContext _context = new LibraryDbContext();
-        BookService _bookService = new BookService(_context);
+
+        BookService _bookService = new BookService();
 
         // GET: Book
         public ActionResult Index(string searchTermBook = null, string searchTermAutroFirstName=null, string searchTermAutroSecondName = null)
         {
             var items = _bookService.GetBooks(searchTermBook, searchTermAutroFirstName, searchTermAutroSecondName);
             
+            if(Request.IsAjaxRequest())
+                return PartialView("_booksPartial", items);
+
             return View(items);
         }
 
@@ -41,9 +44,10 @@ namespace CityLibraryTestWork.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
+            _bookService.AddBook(collection);
             try
             {
-                _bookService.AddBook(collection);
+               
                 return RedirectToAction("Index");
             }
             catch
@@ -93,5 +97,6 @@ namespace CityLibraryTestWork.Controllers
                 return View();
             }
         }
+
     }
 }

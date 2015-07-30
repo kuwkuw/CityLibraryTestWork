@@ -10,9 +10,9 @@ namespace CityLibraryTestWork.Services
     {
         private IRepository<Publisher> _repository;
 
-        public PublisherService(LibraryDbContext context)
+        public PublisherService()
         {
-            _repository = new BaseRepository<Publisher>(context);
+            _repository = new BaseRepository<Publisher>();
         }
 
         public void AddPublisher(Publisher newItem)

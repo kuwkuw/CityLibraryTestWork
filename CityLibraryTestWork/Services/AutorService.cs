@@ -12,9 +12,9 @@ namespace CityLibraryTestWork.Services
     {
         private IRepository<Autor> _repository;
 
-        public AutorService(LibraryDbContext context)
+        public AutorService()
         {
-            _repository = new AutorRepository(context);
+            _repository = new AutorRepository();
         }
 
         public void AddAutor(Autor newItem)

@@ -5,7 +5,8 @@
 }
 
 <h2>Books</h2>
-<form method="get">
+@using (Ajax.BeginForm(new AjaxOptions { HttpMethod = "get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "bookList" }))
+{
     <div class="form-horizontal">
         <div class="form-group">
             <label class="control-label">Search by book title</label>
@@ -13,7 +14,7 @@
         </div>
         <div class="form-group">
             <label class="control-label">Search by autor first name</label>
-            <input class="form-control" type="search" name="searchTermAutroFirstName"/>
+            <input class="form-control" type="search" name="searchTermAutroFirstName" />
         </div>
         <div class="form-group">
             <label class="control-label">Search by autor second name</label>
@@ -21,35 +22,14 @@
         </div>
         <div class="form-group">
             <div class="col-md-10">
-                <input class="btn btn-default" type="submit" value="Search"/>
+                <input class="btn btn-default" type="submit" value="Search" />
             </div>
         </div>
     </div>
-</form>
+}
 <p>
     @Html.ActionLink("Add New Book", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>@Html.DisplayNameFor(model => model.Autor)</th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>@(item.Autor.FirstName+" "+item.Autor.SecondName)</td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BookId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BookId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BookId })
-        </td>
-    </tr>
-}
+@Html.Partial("_booksPartial", Model)
 
-</table>

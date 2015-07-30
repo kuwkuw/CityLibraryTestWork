@@ -6,8 +6,7 @@ namespace CityLibraryTestWork.Controllers
 {
     public class PublisherController : Controller
     {
-        static LibraryDbContext _context = new LibraryDbContext();
-        PublisherService _publiserService = new PublisherService(_context); 
+        PublisherService _publiserService = new PublisherService(); 
         // GET: Publisher
         public ActionResult Index()
         {
@@ -81,12 +80,6 @@ namespace CityLibraryTestWork.Controllers
             {
                 return View();
             }
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-//            _context.Dispose();
-            base.Dispose(disposing);
         }
     }
 }

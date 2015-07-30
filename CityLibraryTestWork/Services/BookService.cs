@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using CityLibraryTestWork.Models;
 using CityLibraryTestWork.Repository;
@@ -15,13 +15,12 @@ namespace CityLibraryTestWork.Services
         PublisherService _publisherService;
         SerieService _serieService;
 
-        public BookService(LibraryDbContext context)
+        public BookService()
         {
-            _bookRepository = new BaseRepository<Book>(context);
-            //_bookService = new BookService(context);
-            _autoService = new AutorService(context);
-            _publisherService = new PublisherService(context);
-            _serieService = new SerieService(context);
+            _bookRepository = new BaseRepository<Book>();
+            _autoService = new AutorService();
+            _publisherService = new PublisherService();
+            _serieService = new SerieService();
         }
 
         public void AddBook(Book newItem)
@@ -70,14 +69,19 @@ namespace CityLibraryTestWork.Services
         }
         public IEnumerable<Book> GetBooks(string title, string autorFirstName, string autorSecondName)
         {
-            return
-                _bookRepository.GetList()
-                    .ToList()
+            IEnumerable<Book> item;
+            using (var context = new LibraryDbContext())
+            {
+                item = context
+                    .Books
+                    .Include(book=>book.Autor)
                     .Where(
                         i =>
-                            (title == null || i.Title.StartsWith(title)) && 
+                            (title == null || i.Title.StartsWith(title)) &&
                             (autorFirstName == null || i.Autor.FirstName.StartsWith(autorFirstName)) &&
-                            (autorSecondName == null ||i.Autor.SecondName.StartsWith(autorSecondName)));
+                            (autorSecondName == null || i.Autor.SecondName.StartsWith(autorSecondName))).ToList();
+            }
+            return item;
         }
 
         public void UpdateBook(Book item)
